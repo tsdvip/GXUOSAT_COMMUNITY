@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.tsdvip.dao.BoardDao">
+ 	<select id="findAll" resultType="com.tsdvip.entity.Board">
+ 		SELECT 
+	 		* 
+ 		FROM
+ 			gx_board
+ 	</select>
+ 	
+ 	<select id="findBoardByBoardId" parameterType="Integer" resultType="com.tsdvip.entity.Board">
+ 		SELECT 
+	 		* 
+ 		FROM
+ 			gx_board where boardId=#{boardId}
+ 	</select>
+ 	<delete id="deleteBoardByBoarId" parameterType="Integer">
+ 		delete gx_board where boardId=#{boardId}
+ 	</delete>
+ 	
+ 	<update id="updateBoard" parameterType="com.tsdvip.entity.Board">
+ 		update gx_board 
+ 		set 
+ 		boardName = #{boardName},
+ 		description = #{description},
+ 		masterId = #{masterId}
+ 		where 
+ 		boardId = #{boardId}					
+ 	</update>
+ 	
+ 	<insert id="insertBoard" parameterType="com.tsdvip.entity.Board">
+ 		insert into gx_board
+ 		(
+ 			boardId,boardName,description,masterId
+ 		)
+ 		 values (
+ 			#{boardId},#{boardName},#{description},#{masterId}
+ 		)
+ 	</insert>
+ 	
+ 	<select id="getMaxBoardId" resultType="Integer">
+ 		select max(boardId) from gx_board
+ 	</select>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

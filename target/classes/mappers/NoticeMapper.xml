@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.tsdvip.dao.NoticeDao">
+ 	<select id="findAllNotice" resultType="com.tsdvip.entity.Notice">
+ 		select * from gx_notice order by noticeId
+ 	</select>
+ 	
+ 	<delete id="deleteNotice" parameterType="Integer">
+ 		delete from gx_notice where noticeId=#{noticeId}
+ 	</delete>
+ 	
+ 	<select id="findNewNotice" resultType="com.tsdvip.entity.Notice">
+ 		select * from gx_notice where  postTime=(select max(postTime) from gx_notice)
+ 	</select>
+ 	<select id="getMaxNoticeId" resultType="Integer">
+ 		select max(noticeId) from gx_notice
+ 	</select>
+ 	
+ 	<insert id="insertNotice" parameterType="com.tsdvip.entity.Notice">
+ 		insert into gx_notice
+ 			(noticeId,content,ymd,postTime) 
+ 			values
+ 			(#{noticeId},#{content},#{ymd},#{postTime})
+ 	</insert>
+ 	
+ 	<update id="updateNotice" parameterType="com.tsdvip.entity.Notice">
+ 		update gx_notice 
+ 		set content=#{content},ymd=#{ymd},postTime=#{postTime} where noticeId=#{noticeId}
+ 	</update>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

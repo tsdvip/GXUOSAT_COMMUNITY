@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.tsdvip.dao.PostDao">
+ 	<select id="countGood" parameterType="Integer" resultType="Integer">
+ 		select count(*) from gx_post where is_good='Y' and boardid=#{boardId}
+ 	</select>
+ 	
+ 	<select id="countAllPost" parameterType="Integer" resultType="Integer">
+ 		select count(*) from gx_post where boardid=#{boardId}
+ 	</select>
+ 	
+ 	<select id="countTodayPost" resultType="Integer">
+ 		select count(*) from GX_POST where POSTTIME like #{0} and boardId=#{1}
+ 	</select>
+ 	<select id="findPostByPage" parameterType="com.tsdvip.entity.Page" resultType="com.tsdvip.entity.Post">
+ 		SELECT * FROM   
+			(  
+			SELECT A.*, ROWNUM RN   
+			FROM (SELECT * FROM gx_post where boardId=#{boardId}) A   
+			)  
+			WHERE RN BETWEEN #{startRow} AND #{endRow}  
+ 	</select>
+ 	<select id="findPostByPostId" parameterType="Integer" resultType="com.tsdvip.entity.Post">
+ 		select * from gx_post where postId=#{postId}
+ 	</select>
+ 	<select id="getMaxPostId" resultType="Integer">
+ 		select max(postId) from gx_post
+ 	</select>
+ 	
+ 	<insert id="insertPost" parameterType="com.tsdvip.entity.Post">
+ 		insert into gx_post (
+ 			postId,
+ 			userId,
+ 			boardId,
+ 			title,
+ 			content,
+ 			postTime
+ 		)
+ 		values(
+ 			#{postId},
+ 			#{userId},
+ 			#{boardId},
+ 			#{title},#{content},#{postTime}
+ 		)
+ 	</insert>
+ 	
+ 	<delete id="deletePostById" parameterType="Integer">
+ 		delete gx_post where postId=#{postId}
+ 	</delete>
+ 	
+ 	<select id="getPostByPostId" parameterType="Integer" resultType="com.tsdvip.entity.Post">
+ 		SELECT * FROM   
+			gx_post
+			WHERE postId=#{postId}  
+ 	</select>
+ 	
+ 	<delete id="deletePostByBoardId" parameterType="Integer">
+ 		delete gx_post where boardId=#{boardId}
+ 	</delete>
+ 	
+ 	<select id="findAllByBoardId" parameterType="Integer" resultType="com.tsdvip.entity.Post">
+ 		SELECT * FROM   
+			gx_post where boardId=#{boardId}
+ 	</select>
+ 	
+ 	<select id="findAll" resultType="com.tsdvip.entity.Post">
+ 		SELECT * FROM   
+			gx_post order by postId desc
+ 	</select>
+ 	
+ 	<select id="countAllByDate" parameterType="String" resultType="Integer">
+ 		select count(*) from gx_post where POSTTIME like #{date}
+ 	</select>
+ 	
+ 	<update id="addGood" parameterType="Integer">
+ 		update gx_post set is_good='Y' where postId=#{postId}
+ 	</update>
+ 	<update id="cancelGood" parameterType="Integer">
+ 		update gx_post set is_good='' where postId=#{postId}
+ 	</update>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

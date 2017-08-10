@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.tsdvip.dao.UserDao">
+ 	<select id="findUserById" parameterType="Integer" resultType="com.tsdvip.entity.User">
+ 		select 
+ 			userid,
+ 			roleid,
+ 			username,
+ 			password,
+ 			nickname,
+ 			face,
+ 			sex,
+ 			phone,
+ 			email,
+ 			address
+ 		from
+ 			gx_user
+ 		where
+ 			userid=#{id}
+ 	</select>
+ 	
+ 	<insert id="saveUser" parameterType="com.tsdvip.entity.User">
+ 		insert into gx_user
+			(userid,
+			roleid,
+			username,
+			password,
+			nickname,
+			face,
+			sex,
+			phone,
+			email,
+			address)
+		values
+			(#{userId}, #{roleId}, #{userName}, #{password},#{nickname},#{face},#{sex},
+			#{phone},#{email},#{address})
+ 	</insert>
+ 	
+ 	<select id="getMaxUserId" resultType="Integer">
+ 		select max(userId) from gx_user
+ 	</select>
+ 	
+ 	<select id="findUserByName" parameterType="String" resultType="com.tsdvip.entity.User">
+ 		select 
+ 			userid,
+ 			roleid,
+ 			username,
+ 			password,
+ 			nickname,
+ 			face,
+ 			sex,
+ 			phone,
+ 			email,
+ 			address
+ 		from
+ 			gx_user
+ 		where
+ 			username=#{name}
+ 	</select>
+ 	
+ 	<select id="findUserRoleName" parameterType="Integer" resultType="String">
+ 		select roleName from gx_role where roleId=#{roleId}
+ 	</select>
+ 	
+ 	<update id="updateUser" parameterType="com.tsdvip.entity.User">
+ 		update gx_user 
+ 			set password=#{password},
+ 			    nickname=#{nickname},
+ 			    face=#{face},
+ 			    sex=#{sex},
+ 			    phone=#{phone},
+ 			    email=#{email},
+ 			    address=#{address}
+ 			where userId=#{userId}
+ 	</update>
+ 	
+ 	<select id="findAll" resultType="com.tsdvip.entity.User">
+ 		select 
+ 			userid,
+ 			roleid,
+ 			username,
+ 			password,
+ 			nickname,
+ 			face,
+ 			sex,
+ 			phone,
+ 			email,
+ 			address
+ 		from
+ 			gx_user order by userid
+ 	</select>
+ 	
+ 	<delete id="deleteUserByUserId" parameterType="Integer">
+ 		delete gx_user where userId=#{userId}
+ 	</delete>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

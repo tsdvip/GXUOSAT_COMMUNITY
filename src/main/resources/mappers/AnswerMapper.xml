@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.tsdvip.dao.AnswerDao">
+ 	<select id="countAnswer" parameterType="Integer" resultType="Integer">
+ 		select count(*) from gx_post_answer where postId=#{postId}
+ 	</select>
+ 	<select id="findAnswerByPostId" parameterType="Integer" resultType="com.tsdvip.entity.Answer">
+ 		select * from gx_post_answer where postId=#{postId}
+ 	</select>
+ 	<insert id="insertAnswer" parameterType="com.tsdvip.entity.Answer">
+ 		insert into gx_post_answer (
+ 			answerId,
+ 			postId,
+ 			userId,
+ 			content,
+ 			answerTime
+ 		)
+ 		values(
+ 			#{answerId},
+ 			#{postId},
+ 			#{userId},
+ 			#{content},#{answerTime}
+ 		)
+ 	</insert>
+ 	
+ 	<select id="getMaxAnswerId" resultType="Integer">
+ 		select max(answerId) from gx_post_answer
+ 	</select>
+ 	
+ 	<delete id="deleteAnswerByPostId" parameterType="Integer">
+ 		delete gx_post_answer where postId=#{postId}
+ 	</delete>
+ 	
+ 	<delete id="deleteAnswerByAnswerId" parameterType="Integer">
+ 		delete gx_post_answer where answerId=#{answerId}
+ 	</delete>
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

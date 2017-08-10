@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/jdbc.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/content.jsp=GB2312
+encoding//src/main/webapp/WEB-INF/menu.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/page_admin/postCount.jsp=UTF-8
+encoding//src/main/webapp/css/index.css=UTF-8
+encoding//src/main/webapp/js/jquery.page.js=UTF-8
+encoding//src/main/webapp/scripts/cookie_util.js=UTF-8
+encoding//src/main/webapp/scripts/edit_init.js=UTF-8
+encoding//src/main/webapp/scripts/edit_note.js=UTF-8
+encoding//src/main/webapp/scripts/login.js=UTF-8
